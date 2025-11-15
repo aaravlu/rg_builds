@@ -56,12 +56,17 @@ jobs:
           arch: x64
           sdk: 10.0.19041.0
 
+      - name: Cargo update
+        if: matrix.os == 'ubuntu-2404'
+        shell: bash
+        run: |
+          rm -f Cargo.lock
+          cargo update
+
       - name: Build
         shell: bash
         run: |
           cd rg
-          rm -f Cargo.lock
-          cargo update
           cargo b -r
 
       - name: Archive
