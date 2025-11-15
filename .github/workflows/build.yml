@@ -41,7 +41,7 @@ jobs:
       - name: Checkout rg
         uses: actions/checkout@v4
         with:
-          repository: BurntSushi/rg
+          repository: BurntSushi/ripgrep
           ref: refs/tags/15.1.0
           path: rg
 
