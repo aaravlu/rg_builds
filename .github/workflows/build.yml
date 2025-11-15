@@ -34,8 +34,9 @@ jobs:
           path: rg
 
       - name: Copy config file
+        shell: bash
         run: |
-          cp .cargo/config.toml rg/.cargo/
+          cp -f .cargo/config.toml rg/.cargo/
 
       - name: Rust cache
         uses: Swatinem/rust-cache@v2
