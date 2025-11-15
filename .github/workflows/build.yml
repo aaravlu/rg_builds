@@ -37,11 +37,6 @@ jobs:
         run: |
           cp .cargo/config.toml rg/.cargo/
 
-      # - name: Install rust
-      #   uses: dtolnay/rust-toolchain@stable
-      #   with:
-      #     toolchain: stable
-
       - name: Rust cache
         uses: Swatinem/rust-cache@v2
         with:
@@ -55,6 +50,14 @@ jobs:
           toolset: 14.29
           arch: x64
           sdk: 10.0.19041.0
+
+      - name: Rm link.exe in git for windows
+        if: matrix.os == 'windows-2022'
+        run: |
+          $git_link = "C:\Program Files\Git\usr\bin\link.exe"
+          if (Test-Path $git_link) {
+              Rename-Item $git_link "_link.exe"
+          }
 
       - name: Cargo update
         if: matrix.os == 'ubuntu-24.04'
