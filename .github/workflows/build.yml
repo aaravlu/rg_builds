@@ -57,7 +57,7 @@ jobs:
           sdk: 10.0.19041.0
 
       - name: Cargo update
-        if: matrix.os == 'ubuntu-2404'
+        if: matrix.os == 'ubuntu-24.04'
         shell: bash
         run: |
           rm -f Cargo.lock
