@@ -38,35 +38,35 @@ jobs:
       - name: Checkout self
         uses: actions/checkout@v4
 
-      - name: Checkout fd
+      - name: Checkout rg
         uses: actions/checkout@v4
         with:
-          repository: sharkdp/fd
-          ref: refs/tags/v10.3.0
-          path: fd
+          repository: BurntSushi/rg
+          ref: refs/tags/15.1.0
+          path: rg
 
       - name: Copy config file
         shell: bash
         run: |
-          mkdir -p fd/.cargo
-          cp -f .cargo/config.toml fd/.cargo/
+          mkdir -p rg/.cargo
+          cp -f .cargo/config.toml rg/.cargo/
 
       - name: Rust cache
         uses: Swatinem/rust-cache@v2
         with:
           key: ${{ matrix.os }}-${{ hashFiles('Cargo.lock') }}
-          workspaces: "fd -> target"
+          workspaces: "rg -> target"
 
       - name: Cargo update
         shell: bash
         run: |
-          cd fd
+          cd rg
           rm -f Cargo.lock
           cargo update
 
       - name: Build
         run: |
-          cd fd
+          cd rg
           cargo b -r
 
       - name: Archive
@@ -74,5 +74,5 @@ jobs:
         with:
           name: rg_${{ matrix.os }}
           path: |
-            fd/target/release/fd
-            fd/target/release/fd.exe
+            rg/target/release/rg
+            rg/target/release/rg.exe
