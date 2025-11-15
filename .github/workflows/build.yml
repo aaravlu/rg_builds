@@ -37,10 +37,10 @@ jobs:
         run: |
           cp .cargo/config.toml rg/.cargo/
 
-      - name: Install rust
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          toolchain: stable
+      # - name: Install rust
+      #   uses: dtolnay/rust-toolchain@stable
+      #   with:
+      #     toolchain: stable
 
       - name: Rust cache
         uses: Swatinem/rust-cache@v2
